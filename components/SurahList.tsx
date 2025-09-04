@@ -25,7 +25,7 @@ const SurahList = ({ surahs }: ComponentProps) => {
             <div className="w-35 text-center"></div>
           </div>
 
-          <div className="divide-y divide-gray-700 max-h-96 overflow-y-auto">
+          <div className="divide-y quran-scroll divide-gray-700 max-h-96 overflow-y-auto">
             {surahs.map((s: Surah) => (
               <div key={s.id}>
                 <SurahItemDestop surah={s} />
