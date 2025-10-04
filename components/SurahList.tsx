@@ -1,6 +1,4 @@
-import Link from "next/link";
 import { Surah } from "../lib/data";
-import { Play } from "lucide-react";
 import SurahItemDestop from "./SurahItemDestop";
 import SurahItemMobile from "./SurahItemMobile";
 

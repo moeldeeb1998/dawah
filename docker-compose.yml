@@ -1,0 +1,29 @@
+services:
+  portal:
+    image: dawah
+    container_name: dawah-portal
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    read_only: true
+    volumes:
+      - public-volume:/app/public
+    
+
+volumes:
+  public-volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./volumes/portal/public

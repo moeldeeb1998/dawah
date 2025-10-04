@@ -16,7 +16,6 @@ export default function Player({ surah, sheikh, rawayah }: Props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isSeeking, setIsSeeking] = useState(false);
   const [volume, setVolume] = useState(0.75);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -114,7 +113,6 @@ export default function Player({ surah, sheikh, rawayah }: Props) {
               }}
               onMouseDown={(e) => {
                 e.preventDefault();
-                setIsSeeking(true);
                 const handleMove = (move: MouseEvent) => {
                   const rect = (
                     e.currentTarget as HTMLDivElement
@@ -127,7 +125,6 @@ export default function Player({ surah, sheikh, rawayah }: Props) {
                   setCurrentTime(newTime);
                 };
                 const handleUp = () => {
-                  setIsSeeking(false);
                   if (audioRef.current)
                     audioRef.current.currentTime = currentTime;
                   window.removeEventListener("mousemove", handleMove);

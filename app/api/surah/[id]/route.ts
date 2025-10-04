@@ -1,8 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getSurahById } from "../../../../lib/data";
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
-  const id = Number(params.id);
+export async function GET(
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const id = Number((await params).id);
   const surah = getSurahById(id);
   if (!surah) return new NextResponse("Not found", { status: 404 });
   return NextResponse.json(surah, {
